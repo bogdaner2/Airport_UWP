@@ -103,7 +103,6 @@
     <Compile Include="DTO\PilotDTO.cs" />
     <Compile Include="DTO\StewardessDTO.cs" />
     <Compile Include="DTO\TicketDTO.cs" />
-    <Compile Include="ViewModel\PilotViewModel.cs" />
     <Compile Include="Views\AircraftPage.xaml.cs">
       <DependentUpon>AircraftPage.xaml</DependentUpon>
     </Compile>

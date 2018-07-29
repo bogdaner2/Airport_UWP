@@ -16,5 +16,10 @@ namespace Aiport_UWP.DTO
         [Required]
         [Range(1,50)]
         public int Experience { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id : {Id} Fullname : {FirstName} {LastName}";
+        }
     }
 }

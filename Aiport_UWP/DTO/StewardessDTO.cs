@@ -11,5 +11,10 @@ namespace Aiport_UWP.DTO
 
         public string LastName { get; set; }
         public string DateOfBirth { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id : {Id} Fullname : {FirstName} {LastName}";
+        }
     }
 }
