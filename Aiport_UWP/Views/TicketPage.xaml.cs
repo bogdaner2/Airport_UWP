@@ -23,12 +23,14 @@ namespace Aiport_UWP
         public ObservableCollection<TicketDTO> Tickets { get; private set; }
         private TicketDTO _selectedTicket;
         private CrudService<TicketDTO> Service { get; set; }
+        private bool isCreate;
 
         public TicketPage()
         {
             this.InitializeComponent();
             Tickets = new ObservableCollection<TicketDTO>();
             Service = new CrudService<TicketDTO>("ticket");
+            isCreate = false;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -46,11 +48,14 @@ namespace Aiport_UWP
 
         private void Lv_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            _selectedTicket = e.ClickedItem as TicketDTO;
-            canvas.Visibility = Visibility.Collapsed;
-            TbId.Text = "Ticket Id : " + _selectedTicket?.Id;
-            TbNumber.Text = "Number : " + _selectedTicket?.Number;
-            TbPrice.Text = "Price : " + _selectedTicket?.Price +"$";
+            if (!isCreate)
+            {
+                _selectedTicket = e.ClickedItem as TicketDTO;
+                canvas.Visibility = Visibility.Collapsed;
+                TbId.Text = "Ticket Id : " + _selectedTicket?.Id;
+                TbNumber.Text = "Number : " + _selectedTicket?.Number;
+                TbPrice.Text = "Price : " + _selectedTicket?.Price + "$";
+            }
         }
 
         private async void BtnDelete_OnClick(object sender, RoutedEventArgs e)
@@ -61,9 +66,16 @@ namespace Aiport_UWP
 
         private async void BtnCreate_OnClick(object sender, RoutedEventArgs e)
         {
-            var ticket = ReadTextBoxesData();
-            await Service.Create(ticket);
-            Tickets.Add(ticket);
+            if (isCreate)
+            {
+                var ticket = ReadTextBoxesData();
+                await Service.Create(ticket);
+                Tickets.Add(ticket);
+            }
+            TbId.Text = "Input data";
+            TbNumber.Text = "Number :";
+            TbPrice.Text = "Price : ";
+            isCreate = true;
         }
 
         private async void BtnUpdate_OnClick(object sender, RoutedEventArgs e)

@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="Aiport_UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Aiport_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Select the entities list"  FontSize="50" FontWeight="Bold"></TextBlock>
+            <Button Content="Tickets" HorizontalAlignment="Stretch" Background="White" BorderBrush="GhostWhite" Margin="0,20,0,20" Click="Forward_Ticket_Click" />
+            <Button Content="Pilots"  HorizontalAlignment="Stretch"  Background="White" BorderBrush="GhostWhite" Margin="0,0,0,20" Click="Forward_Pilot_Click" />
+            <Button Content="Stewardesses"  HorizontalAlignment="Stretch"  Background="White" BorderBrush="GhostWhite" Margin="0,0,0,20" Click="Forward_Stewardess_Click" />
+            <Button Content="Crews" HorizontalAlignment="Stretch"  Background="White" BorderBrush="GhostWhite" Margin="0,0,0,20" Click="Forward_Crew_Click" />
+            <Button Content="Flights" HorizontalAlignment="Stretch"  Background="White" BorderBrush="GhostWhite" Margin="0,0,0,20" Click="Forward_Flight_Click" />
+            <Button Content="Departures" HorizontalAlignment="Stretch"  Background="White" BorderBrush="GhostWhite" Margin="0,0,0,20"  Click="Forward_Departure_Click" />
+            <Button Content="Aircrafts" HorizontalAlignment="Stretch"  Background="White" BorderBrush="GhostWhite" Margin="0,0,0,20" Click="Forward_Aircraft_Click" />
+            <Button Content="Aircraft types" HorizontalAlignment="Stretch"  Background="White" BorderBrush="GhostWhite" Margin="0,0,0,20" Click="Forward_Aircraft_Type_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

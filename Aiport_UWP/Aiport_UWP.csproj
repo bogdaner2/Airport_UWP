@@ -103,17 +103,33 @@
     <Compile Include="DTO\PilotDTO.cs" />
     <Compile Include="DTO\StewardessDTO.cs" />
     <Compile Include="DTO\TicketDTO.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Views\AircraftPage.xaml.cs">
+      <DependentUpon>AircraftPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AircraftTypePage.xaml.cs">
+      <DependentUpon>AircraftTypePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CrewPage.xaml.cs">
+      <DependentUpon>CrewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeparturePage.xaml.cs">
+      <DependentUpon>DeparturePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlightPage.xaml.cs">
+      <DependentUpon>FlightPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PilotPage.xaml.cs">
+    <Compile Include="Views\PilotPage.xaml.cs">
       <DependentUpon>PilotPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CrudService.cs" />
-    <Compile Include="Services\PilotService.cs" />
-    <Compile Include="Services\TicketService.cs" />
-    <Compile Include="TicketPage.xaml.cs">
+    <Compile Include="Views\StewardessPage.xaml.cs">
+      <DependentUpon>StewardessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TicketPage.xaml.cs">
       <DependentUpon>TicketPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -141,15 +157,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PilotPage.xaml">
+    <Page Include="Views\AircraftPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TicketPage.xaml">
+    <Page Include="Views\AircraftTypePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CrewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeparturePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlightPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PilotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StewardessPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TicketPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,9 +202,7 @@
       <Version>11.0.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
