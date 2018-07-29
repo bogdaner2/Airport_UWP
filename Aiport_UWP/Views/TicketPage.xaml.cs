@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 using Aiport_UWP.DTO;
 using Aiport_UWP.Services;
-using Aiport_UWP.ViewModels;
 
 
 namespace Aiport_UWP
@@ -69,7 +68,7 @@ namespace Aiport_UWP
             {
                 Info.Text = "Info : Input data and 'Update' for update or 'Delete' for delete";
                 _selectedTicket = e.ClickedItem as TicketDTO;
-                canvas.Visibility = Visibility.Collapsed;
+                Сanvas.Visibility = Visibility.Collapsed;
                 TbId.Text = "Ticket Id : " + _selectedTicket?.Id;
                 TbNumber.Text = "Number : " + _selectedTicket?.Number;
                 TbPrice.Text = "Price : " + _selectedTicket?.Price + "$";
@@ -78,19 +77,35 @@ namespace Aiport_UWP
 
         private async void BtnDelete_OnClick(object sender, RoutedEventArgs e)
         {
-            canvas.Visibility = Visibility.Visible;
-            await Service.Delete(_selectedTicket.Id);
+            Сanvas.Visibility = Visibility.Visible;
+            try
+            { 
+                await Service.Delete(_selectedTicket.Id);
+            }
+            catch
+            {
+                Info.Text = "Server error!";
+            }
+
             Tickets.Remove(_selectedTicket);
         }
 
         private async void BtnCreate_OnClick(object sender, RoutedEventArgs e)
         {
+            Сanvas.Visibility = Visibility.Collapsed;
             if (isCreate)
             {
                 var ticket = ReadTextBoxesData();
                 if (ticket != null)
                 {
-                    await Service.Create(ticket);
+                    try
+                    { 
+                        await Service.Create(ticket);
+                    }
+                    catch
+                    {
+                        Info.Text = "Server error!";
+                    }
                     lastId++;
                     ticket.Id = lastId;
                     Tickets.Add(ticket);
@@ -118,7 +133,14 @@ namespace Aiport_UWP
             var ticketInput = ReadTextBoxesData();
             if (ticketInput != null && _selectedTicket != null)
             {
-                await Service.UpdateTicket(ticketInput, _selectedTicket.Id);
+                try
+                {
+                    await Service.Update(ticketInput, _selectedTicket.Id);
+                }
+                catch
+                {
+                    Info.Text = "Server error!";
+                }
                 var itemIndex = Tickets.ToList().FindIndex(x => x.Id == _selectedTicket.Id);
                 var item = Tickets.ToList().ElementAt(itemIndex);
                 Tickets.RemoveAt(itemIndex);

@@ -58,7 +58,7 @@ namespace Aiport_UWP.Services
             }
         }
 
-        public async Task UpdateTicket(T item, int id)
+        public async Task Update(T item, int id)
         {
             using (HttpClient client = new HttpClient())
             {
