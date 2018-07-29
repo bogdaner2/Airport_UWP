@@ -165,7 +165,7 @@ namespace Aiport_UWP
                 item = pilotInput;
                 item.Id = _selectedPilot.Id;
                 Pilots.Insert(itemIndex, item);
-                TbId.Text = "Pilot id :" + item.Id;
+                TbId.Text = "Pilot Id :" + item.Id;
                 TbFName.Text = "First name : " + item.FirstName;
                 TbLName.Text = "Last name : " + item.LastName;
                 TbBirth.Text = "Birth : " + item.DateOfBirth;

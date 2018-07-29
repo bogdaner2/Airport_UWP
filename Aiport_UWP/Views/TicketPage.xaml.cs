@@ -147,7 +147,7 @@ namespace Aiport_UWP
                 item = ticketInput;
                 item.Id = _selectedTicket.Id;
                 Tickets.Insert(itemIndex, item);
-                TbId.Text = "Ticket id :" + item.Id;
+                TbId.Text = "Ticket Id :" + item.Id;
                 TbNumber.Text = "Number :" + item.Number;
                 TbPrice.Text = "Price : " + item.Price;
             }
