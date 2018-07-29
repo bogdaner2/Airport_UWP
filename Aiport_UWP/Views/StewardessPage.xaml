@@ -99,8 +99,8 @@
 
             <TextBlock x:Name="TbBirth"  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan ="3" Text="Birth : " VerticalAlignment="Bottom" FontSize="25" Margin="40,0,40,0"></TextBlock>
             <TextBox x:Name="InputBirth"  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan ="3" Height="30" HorizontalAlignment="Stretch" Margin="40,0,40,0" ></TextBox>
-            <TextBlock x:Name="Info" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan ="3" Text="Info :" FontSize="10"  Margin="40,0,0,0"></TextBlock>
-            <Canvas x:Name="Canvas" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="3" Grid.RowSpan ="10" Background="White" Canvas.ZIndex="1"></Canvas>
+            <TextBlock x:Name="Info" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan ="3" Text="Info :" FontSize="10"  Margin="40,0,0,0"></TextBlock>
+            <Canvas x:Name="Canvas" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="3" Grid.RowSpan ="8" Background="White" Canvas.ZIndex="1"></Canvas>
 
         </Grid>
 

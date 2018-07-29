@@ -25,7 +25,7 @@ namespace Aiport_UWP
 
         private void Forward_Aircraft_Type_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(TicketPage));
+            Frame.Navigate(typeof(AircraftTypePage));
         }
 
         private void Forward_Aircraft_Click(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace Aiport_UWP
         {
             Frame.Navigate(typeof(FlightPage));
         }
-
+        
         private void Forward_Crew_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(CrewPage));
