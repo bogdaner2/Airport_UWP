@@ -16,5 +16,7 @@ namespace Aiport_UWP.DTO
 
         public string ReleseDate { get; set; }
         public string Lifetime { get; set; }
+
+        
     }
 }

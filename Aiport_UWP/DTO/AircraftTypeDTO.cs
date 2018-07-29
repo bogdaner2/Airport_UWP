@@ -16,5 +16,10 @@ namespace Aiport_UWP.DTO
         [Required]
         [Range(1000, 1000000)]
         public int CarryingCapacity { get; set; }
+
+        public override string ToString()
+        {
+            return $"Model : {Model}";
+        }
     }
 }

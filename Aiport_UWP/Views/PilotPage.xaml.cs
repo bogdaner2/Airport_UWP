@@ -148,28 +148,32 @@ namespace Aiport_UWP
 
         private async void BtnUpdate_OnClick(object sender, RoutedEventArgs e)
         {
-            var pilotInput = ReadTextBoxesData();
-            if (pilotInput != null && _selectedPilot != null)
+            if (!isCreate)
             {
-                try
+                var pilotInput = ReadTextBoxesData();
+                if (pilotInput != null && _selectedPilot != null)
                 {
-                    await Service.Update(pilotInput, _selectedPilot.Id);
+                    try
+                    {
+                        await Service.Update(pilotInput, _selectedPilot.Id);
+                    }
+                    catch
+                    {
+                        Info.Text = "Server error!";
+                    }
+
+                    var itemIndex = Pilots.ToList().FindIndex(x => x.Id == _selectedPilot.Id);
+                    var item = Pilots.ToList().ElementAt(itemIndex);
+                    Pilots.RemoveAt(itemIndex);
+                    item = pilotInput;
+                    item.Id = _selectedPilot.Id;
+                    Pilots.Insert(itemIndex, item);
+                    TbId.Text = "Pilot Id :" + item.Id;
+                    TbFName.Text = "First name : " + item.FirstName;
+                    TbLName.Text = "Last name : " + item.LastName;
+                    TbBirth.Text = "Birth : " + item.DateOfBirth;
+                    TbExp.Text = "Experience : " + item.Experience;
                 }
-                catch
-                {
-                    Info.Text = "Server error!";
-                }
-                var itemIndex = Pilots.ToList().FindIndex(x => x.Id == _selectedPilot.Id);
-                var item = Pilots.ToList().ElementAt(itemIndex);
-                Pilots.RemoveAt(itemIndex);
-                item = pilotInput;
-                item.Id = _selectedPilot.Id;
-                Pilots.Insert(itemIndex, item);
-                TbId.Text = "Pilot Id :" + item.Id;
-                TbFName.Text = "First name : " + item.FirstName;
-                TbLName.Text = "Last name : " + item.LastName;
-                TbBirth.Text = "Birth : " + item.DateOfBirth;
-                TbExp.Text = "Experience : " + item.Experience;
             }
         }
 

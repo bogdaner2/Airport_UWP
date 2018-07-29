@@ -41,15 +41,15 @@ namespace Aiport_UWP.Views
 
         private AircraftTypeDTO ReadTextBoxesData()
         {
-            var firstName = InputModel.Text;
+            var model = InputModel.Text;
             int.TryParse(InputSeats.Text,out int countOfSeats);
             int.TryParse(InputCarryingCapacity.Text, out int carryingCapacity);
-            if (String.IsNullOrEmpty(firstName))
+            if (String.IsNullOrEmpty(model))
             {
-                Info.Text = "Info : fill first name";
+                Info.Text = "Info : fill ьщвуд";
                 return null;
             }
-            if (firstName.Length < 4)
+            if (model.Length < 4)
             {
                 Info.Text = "Info : length have to be more than 4";
                 return null;
@@ -64,7 +64,7 @@ namespace Aiport_UWP.Views
                 Info.Text = "Info : Capacity have to be between 1000 and 1000000";
                 return null;
             }
-            return new AircraftTypeDTO { Model = firstName, CountOfSeats = countOfSeats, CarryingCapacity = carryingCapacity };
+            return new AircraftTypeDTO { Model = model, CountOfSeats = countOfSeats, CarryingCapacity = carryingCapacity };
         }
 
         private void Lv_OnItemClick(object sender, ItemClickEventArgs e)
@@ -137,27 +137,31 @@ namespace Aiport_UWP.Views
 
         private async void BtnUpdate_OnClick(object sender, RoutedEventArgs e)
         {
-            var stewardessInput = ReadTextBoxesData();
-            if (stewardessInput != null && _selectedAircraftType != null)
+            if (!isCreate)
             {
-                try
+                var stewardessInput = ReadTextBoxesData();
+                if (stewardessInput != null && _selectedAircraftType != null)
                 {
-                    await Service.Update(stewardessInput, _selectedAircraftType.Id);
+                    try
+                    {
+                        await Service.Update(stewardessInput, _selectedAircraftType.Id);
+                    }
+                    catch
+                    {
+                        Info.Text = "Server error!";
+                    }
+
+                    var itemIndex = AircraftTypes.ToList().FindIndex(x => x.Id == _selectedAircraftType.Id);
+                    var item = AircraftTypes.ToList().ElementAt(itemIndex);
+                    AircraftTypes.RemoveAt(itemIndex);
+                    item = stewardessInput;
+                    item.Id = _selectedAircraftType.Id;
+                    AircraftTypes.Insert(itemIndex, item);
+                    TbId.Text = "AircraftType Id :" + item.Id;
+                    TbModel.Text = "Model : " + item.Model;
+                    TbSeats.Text = " Count of seats : " + item.CountOfSeats;
+                    TbCapacity.Text = "CarryingCapacity : " + item.CarryingCapacity;
                 }
-                catch
-                {
-                    Info.Text = "Server error!";
-                }
-                var itemIndex = AircraftTypes.ToList().FindIndex(x => x.Id == _selectedAircraftType.Id);
-                var item = AircraftTypes.ToList().ElementAt(itemIndex);
-                AircraftTypes.RemoveAt(itemIndex);
-                item = stewardessInput;
-                item.Id = _selectedAircraftType.Id;
-                AircraftTypes.Insert(itemIndex, item);
-                TbId.Text = "AircraftType Id :" + item.Id;
-                TbModel.Text = "Model : " + item.Model;
-                TbSeats.Text = " Count of seats : " + item.CountOfSeats;
-                TbCapacity.Text = "CarryingCapacity : " + item.CarryingCapacity;
             }
         }
 

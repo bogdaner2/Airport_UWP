@@ -153,27 +153,31 @@ namespace Aiport_UWP.Views
 
         private async void BtnUpdate_OnClick(object sender, RoutedEventArgs e)
         {
-            var stewardessInput = ReadTextBoxesData();
-            if (stewardessInput != null && _selectedStewardess != null)
+            if (!isCreate)
             {
-                try
+                var stewardessInput = ReadTextBoxesData();
+                if (stewardessInput != null && _selectedStewardess != null)
                 {
-                    await Service.Update(stewardessInput, _selectedStewardess.Id);
+                    try
+                    {
+                        await Service.Update(stewardessInput, _selectedStewardess.Id);
+                    }
+                    catch
+                    {
+                        Info.Text = "Server error!";
+                    }
+
+                    var itemIndex = Stewardesses.ToList().FindIndex(x => x.Id == _selectedStewardess.Id);
+                    var item = Stewardesses.ToList().ElementAt(itemIndex);
+                    Stewardesses.RemoveAt(itemIndex);
+                    item = stewardessInput;
+                    item.Id = _selectedStewardess.Id;
+                    Stewardesses.Insert(itemIndex, item);
+                    TbId.Text = "Stewardess Id :" + item.Id;
+                    TbFName.Text = "First name : " + item.FirstName;
+                    TbLName.Text = "Last name : " + item.LastName;
+                    TbBirth.Text = "Birth : " + item.DateOfBirth;
                 }
-                catch
-                {
-                    Info.Text = "Server error!";
-                }
-                var itemIndex = Stewardesses.ToList().FindIndex(x => x.Id == _selectedStewardess.Id);
-                var item = Stewardesses.ToList().ElementAt(itemIndex);
-                Stewardesses.RemoveAt(itemIndex);
-                item = stewardessInput;
-                item.Id = _selectedStewardess.Id;
-                Stewardesses.Insert(itemIndex, item);
-                TbId.Text = "Stewardess Id :" + item.Id;
-                TbFName.Text = "First name : " + item.FirstName;
-                TbLName.Text = "Last name : " + item.LastName;
-                TbBirth.Text = "Birth : " + item.DateOfBirth;
             }
         }
 

@@ -130,26 +130,29 @@ namespace Aiport_UWP
 
         private async void BtnUpdate_OnClick(object sender, RoutedEventArgs e)
         {
-            var ticketInput = ReadTextBoxesData();
-            if (ticketInput != null && _selectedTicket != null)
+            if (!isCreate)
             {
-                try
+                var ticketInput = ReadTextBoxesData();
+                if (ticketInput != null && _selectedTicket != null)
                 {
-                    await Service.Update(ticketInput, _selectedTicket.Id);
+                    try
+                    {
+                        await Service.Update(ticketInput, _selectedTicket.Id);
+                    }
+                    catch
+                    {
+                        Info.Text = "Server error!";
+                    }
+                    var itemIndex = Tickets.ToList().FindIndex(x => x.Id == _selectedTicket.Id);
+                    var item = Tickets.ToList().ElementAt(itemIndex);
+                    Tickets.RemoveAt(itemIndex);
+                    item = ticketInput;
+                    item.Id = _selectedTicket.Id;
+                    Tickets.Insert(itemIndex, item);
+                    TbId.Text = "Ticket Id :" + item.Id;
+                    TbNumber.Text = "Number :" + item.Number;
+                    TbPrice.Text = "Price : " + item.Price;
                 }
-                catch
-                {
-                    Info.Text = "Server error!";
-                }
-                var itemIndex = Tickets.ToList().FindIndex(x => x.Id == _selectedTicket.Id);
-                var item = Tickets.ToList().ElementAt(itemIndex);
-                Tickets.RemoveAt(itemIndex);
-                item = ticketInput;
-                item.Id = _selectedTicket.Id;
-                Tickets.Insert(itemIndex, item);
-                TbId.Text = "Ticket Id :" + item.Id;
-                TbNumber.Text = "Number :" + item.Number;
-                TbPrice.Text = "Price : " + item.Price;
             }
         }
 
