@@ -98,7 +98,7 @@
             <ComboBox x:Name="PilotCombo"  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan ="3"  Height="30" HorizontalAlignment="Stretch" Margin="40,0,40,0" ItemsSource="{x:Bind Pilots}"/>
             <TextBlock x:Name="TbStewardess"  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan ="3" Text="Aircraft Id: " VerticalAlignment="Bottom" FontSize="25" Margin="40,0,40,0"></TextBlock>
             <ComboBox x:Name="StewardessCombo"  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan ="3"  Height="30" HorizontalAlignment="Stretch" Margin="40,0,40,0" ItemsSource="{x:Bind Stewardesses}"/>
-            <Button x:Name="BtnAddStew" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan ="3" Click="BtnAddStew_OnClick"  HorizontalAlignment="Stretch"  Margin="40,0,40,0" FontSize="20"  VerticalAlignment="Stretch" Background="White" Content="ADD" />
+            <Button x:Name="BtnAddStew" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan ="3" Click="BtnAddStew_OnClick"  HorizontalAlignment="Stretch"  Margin="40,0,40,0" FontSize="20"  VerticalAlignment="Stretch" Background="White" Content="Add stewardess" />
             <TextBlock x:Name="TbStewAdd"  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan ="3" Text="Added stewardess id: " VerticalAlignment="Bottom" FontSize="25" Margin="40,0,40,0"></TextBlock>
             <ListBox x:Name="SelecetedStew" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan ="3" Grid.RowSpan ="2" Background="White" BorderBrush="Gray"   ItemsSource="{x:Bind selectedIds}" Margin="40,0,40,0" ></ListBox>
             <TextBlock x:Name="Info" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan ="3" Text="Info :" FontSize="10"  Margin="40,0,0,0"></TextBlock>

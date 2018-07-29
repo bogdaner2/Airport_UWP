@@ -12,5 +12,10 @@ namespace Aiport_UWP.DTO
         [Required]
         [MinLength(4,ErrorMessage = "Number must be more than 4 letters")]
         public string Number { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id : {Id} Number : {Number}";
+        }
     }
 }
