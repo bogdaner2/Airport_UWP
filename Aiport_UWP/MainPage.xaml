@@ -8,6 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Select the entities list" FontSize="50" FontWeight="Bold"></TextBlock>
+            <Button Content="Tickets" Click="Forward_Ticket_Click" />
+            <Button Content="Pilots" Click="Forward_Pilot_Click" />
+            <Button Content="Stewardesses" Click="Forward_Ticket_Click" />
+            <Button Content="Cres" Click="Forward_Pilot_Click" />
+            <Button Content="Flights" Click="Forward_Ticket_Click" />
+            <Button Content="Departures" Click="Forward_Pilot_Click" />
+            <Button Content="Aircrafts" Click="Forward_Ticket_Click" />
+            <Button Content="Aircraft types" Click="Forward_Pilot_Click" />
+        </StackPanel>
     </Grid>
 </Page>

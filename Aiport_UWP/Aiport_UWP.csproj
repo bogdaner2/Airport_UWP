@@ -95,10 +95,30 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DTO\AircraftDTO.cs" />
+    <Compile Include="DTO\AircraftTypeDTO.cs" />
+    <Compile Include="DTO\CrewDTO.cs" />
+    <Compile Include="DTO\DeparturesDTO.cs" />
+    <Compile Include="DTO\FlightDTO.cs" />
+    <Compile Include="DTO\PilotDTO.cs" />
+    <Compile Include="DTO\StewardessDTO.cs" />
+    <Compile Include="DTO\TicketDTO.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PilotPage.xaml.cs">
+      <DependentUpon>PilotPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CrudService.cs" />
+    <Compile Include="Services\PilotService.cs" />
+    <Compile Include="Services\TicketService.cs" />
+    <Compile Include="TicketPage.xaml.cs">
+      <DependentUpon>TicketPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\PilotViewModel.cs" />
+    <Compile Include="ViewModels\TicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -125,11 +145,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="PilotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TicketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.8</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
