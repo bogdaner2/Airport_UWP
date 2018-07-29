@@ -74,29 +74,24 @@ namespace Aiport_UWP.Views
 
         private CrewDTO ReadTextBoxesData()
         {
-           // var number = InputNumber.Text;
-            //var departure = InputCrew.Text;
-            var crew = PilotCombo.SelectedItem as CrewDTO;
-            //var aircraft = PilotCombo.SelectedItem as PilotDTO;
-            Regex regex = new Regex(@"^([0-2][0-9]|(3)[0-1])(.)(((0)[0-9])|((1)[0-2]))(.)\d{4}$");
-            //MatchCollection matches = regex.Matches(departure);
-            //if (matches.Count == 0)
-            //{
-            //    Info.Text = "Info : format dd.mm.yyyy";
-            //    return null;
-            //}
-            if (crew == null)
+            var pilot = PilotCombo.SelectedItem as PilotDTO;
+            if (StewardessCombo.SelectedItem == null)
             {
-                Info.Text = "Info : select crew";
+                Info.Text = "Info : select stewardess";
                 return null;
             }
-            //if (aircraft == null)
-            //{
-            //    Info.Text = "Info : select aircraft";
-            //    return null;
-            //}
+            if (selectedIds.Count == 0)
+            {
+                Info.Text = "Info : select stewardesses";
+                return null;
+            }
+            if (pilot == null)
+            {
+                Info.Text = "Info : select pilot";
+                return null;
+            }
             
-            return new CrewDTO { PilotId = 1 ,StewardessesId = (new int[] { 1, 2}).ToList()};
+            return new CrewDTO { PilotId = pilot.Id ,StewardessesId = selectedIds.ToList()};
         }
 
         private void Lv_OnItemClick(object sender, ItemClickEventArgs e)
@@ -107,9 +102,17 @@ namespace Aiport_UWP.Views
                 _selectedCrew = e.ClickedItem as CrewDTO;
                 Canvas.Visibility = Visibility.Collapsed;
                 TbId.Text = "Crew Id : " + _selectedCrew?.Id;
-                TbPilot.Text = "Pilot Id : " + _selectedCrew?.PilotId; 
-                TbStewardess.Text = "Stewardesses :" + _selectedCrew?.StewardessesId.Count; 
+                TbPilot.Text = "Pilot Id : " + _selectedCrew?.PilotId;
+                TbStewardess.Text = "Stewardesses : " + StewardessesId(_selectedCrew);
             }
+        }
+
+        private string StewardessesId(CrewDTO crew)
+        {
+            var result = "count : " + crew.StewardessesId.Count + " (";
+            crew.StewardessesId.ToList().ForEach(x => result += " Id:"+ x.ToString());
+            result += " )";
+            return result;
         }
 
         private async void BtnDelete_OnClick(object sender, RoutedEventArgs e)
@@ -189,7 +192,7 @@ namespace Aiport_UWP.Views
                     Crews.Insert(itemIndex, item);
                     TbId.Text = "Crew Id :" + item.Id;
                     TbPilot.Text = "Pilot Id : " + item.PilotId;
-                    TbStewardess.Text = "Stewardesses :";
+                    TbStewardess.Text = "Stewardesses : " + StewardessesId(item);
                 }
             }
         }
@@ -201,7 +204,14 @@ namespace Aiport_UWP.Views
 
         private void BtnAddStew_OnClick(object sender, RoutedEventArgs e)
         {
-            selectedIds.Add((StewardessCombo.SelectedItem as StewardessDTO).Id);
+            if (StewardessCombo.SelectedItem == null)
+            {
+                Info.Text = "Info : select stewardess";;
+            }
+            else
+            {
+                selectedIds.Add((StewardessCombo.SelectedItem as StewardessDTO).Id);
+            }
         }
     }
 }
