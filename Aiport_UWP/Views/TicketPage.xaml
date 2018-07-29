@@ -95,8 +95,9 @@
             <TextBox x:Name="InputNumber"  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan ="3" Height="40" HorizontalAlignment="Stretch" Margin="40,0,40,0" ></TextBox>
             <TextBlock x:Name="TbPrice"  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan ="3" Text="Price : " VerticalAlignment="Bottom" FontSize="25" Margin="40,0,40,0"></TextBlock>
             <TextBox x:Name="InputPrice" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan ="3"  Height="40" HorizontalAlignment="Stretch" Margin="40,0,40,0" ></TextBox>
-            <Canvas x:Name="canvas" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="3" Grid.RowSpan ="6" Background="White" Canvas.ZIndex="1"></Canvas> 
-            
+            <TextBlock x:Name="Info" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan ="3" Text="Info :" FontSize="10"  Margin="40,0,0,0"></TextBlock>
+            <Canvas x:Name="canvas" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="3" Grid.RowSpan ="6" Background="White" Canvas.ZIndex="1"></Canvas>
+
         </Grid>
 
     </Grid>

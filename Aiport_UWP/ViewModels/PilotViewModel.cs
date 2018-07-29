@@ -11,20 +11,6 @@ namespace Aiport_UWP.ViewModels
 {
     public class PilotViewModel : BaseViewModel
     {
-        public PilotService service { get; set; }
-        public PilotViewModel()
-        {
-            service = new PilotService();
-            Pilots = new ObservableCollection<PilotDTO>();
-        }
-
-        public ObservableCollection<PilotDTO> Pilots { get; set; }
-
-        private async void LoadData()
-        {
-            var result = await service.getAllPilots();
-            result.ForEach(x => Pilots.Add(x));
-        }
 
     }
 }

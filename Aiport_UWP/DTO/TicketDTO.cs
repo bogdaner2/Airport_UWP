@@ -6,7 +6,7 @@ namespace Aiport_UWP.DTO
     {
         public int Id { get; set; }
         [Required]
-        [Range(1.0, 9999.0, ErrorMessage = "Price must be between $1 and $9999")]
+        [Range(1.0, 10000.0, ErrorMessage = "Price must be between $1 and $10000")]
         public double Price { get; set; }
 
         [Required]

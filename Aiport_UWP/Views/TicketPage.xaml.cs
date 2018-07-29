@@ -24,6 +24,7 @@ namespace Aiport_UWP
         private TicketDTO _selectedTicket;
         private CrudService<TicketDTO> Service { get; set; }
         private bool isCreate;
+        private int lastId;
 
         public TicketPage()
         {
@@ -37,12 +38,28 @@ namespace Aiport_UWP
         {
             var result = await Service.GetAll();
             result.ForEach(x => Tickets.Add(x));
+            lastId = Tickets.LastOrDefault().Id;
         }
 
         private TicketDTO ReadTextBoxesData()
         {
             var number = InputNumber.Text;
+            if(String.IsNullOrEmpty(number))
+            {
+                Info.Text = "Info : fill number";
+                return null;
+            }
+            if(number.Length < 4)
+            {
+                Info.Text = "Info : length have to be more than 4";
+                return null;
+            }
             int.TryParse(InputPrice.Text,out int price);
+            if(price == 0 || price > 10000)
+            {
+                Info.Text = "Info : price have to be between 1 and 10000$";
+                return null;
+            }
             return new TicketDTO {Number = number, Price = price};
         }
 
@@ -50,6 +67,7 @@ namespace Aiport_UWP
         {
             if (!isCreate)
             {
+                Info.Text = "Info : Input data and 'Update' for update or 'Delete' for delete";
                 _selectedTicket = e.ClickedItem as TicketDTO;
                 canvas.Visibility = Visibility.Collapsed;
                 TbId.Text = "Ticket Id : " + _selectedTicket?.Id;
@@ -60,6 +78,7 @@ namespace Aiport_UWP
 
         private async void BtnDelete_OnClick(object sender, RoutedEventArgs e)
         {
+            canvas.Visibility = Visibility.Visible;
             await Service.Delete(_selectedTicket.Id);
             Tickets.Remove(_selectedTicket);
         }
@@ -69,25 +88,47 @@ namespace Aiport_UWP
             if (isCreate)
             {
                 var ticket = ReadTextBoxesData();
-                await Service.Create(ticket);
-                Tickets.Add(ticket);
+                if (ticket != null)
+                {
+                    await Service.Create(ticket);
+                    lastId++;
+                    ticket.Id = lastId;
+                    Tickets.Add(ticket);
+                    isCreate = false;
+                    CreateInfo();
+                    Info.Text = "Choose new action!";
+                }
             }
+            else {
+                CreateInfo();
+                isCreate = true;
+                Info.Text = "Info : Input data and press 'Create' ";
+            }
+        }
+
+        private void CreateInfo()
+        {
             TbId.Text = "Input data";
             TbNumber.Text = "Number :";
             TbPrice.Text = "Price : ";
-            isCreate = true;
         }
 
         private async void BtnUpdate_OnClick(object sender, RoutedEventArgs e)
         {
             var ticketInput = ReadTextBoxesData();
-            await Service.UpdateTicket(ticketInput, _selectedTicket.Id);
-            var itemIndex = Tickets.ToList().FindIndex(x => x.Id == _selectedTicket.Id);
-            var item = Tickets.ToList().ElementAt(itemIndex);
-            Tickets.RemoveAt(itemIndex);
-            item = ticketInput;
-            item.Id = _selectedTicket.Id;
-            Tickets.Insert(itemIndex, item);
+            if (ticketInput != null && _selectedTicket != null)
+            {
+                await Service.UpdateTicket(ticketInput, _selectedTicket.Id);
+                var itemIndex = Tickets.ToList().FindIndex(x => x.Id == _selectedTicket.Id);
+                var item = Tickets.ToList().ElementAt(itemIndex);
+                Tickets.RemoveAt(itemIndex);
+                item = ticketInput;
+                item.Id = _selectedTicket.Id;
+                Tickets.Insert(itemIndex, item);
+                TbId.Text = "Ticket id :" + item.Id;
+                TbNumber.Text = "Number :" + item.Number;
+                TbPrice.Text = "Price : " + item.Price;
+            }
         }
 
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)
