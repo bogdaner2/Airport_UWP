@@ -17,6 +17,9 @@ namespace Aiport_UWP.DTO
         public string ReleseDate { get; set; }
         public string Lifetime { get; set; }
 
-        
+        public override string ToString()
+        {
+            return $"Id : {Id} Name : {Name}";
+        }
     }
 }

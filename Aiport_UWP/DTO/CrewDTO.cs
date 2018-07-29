@@ -14,5 +14,10 @@ namespace Aiport_UWP.DTO
 
         [Required]
         public List<int> StewardessesId { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id : {Id} Stewardesses on board : {StewardessesId.Count}";
+        }
     }
 }

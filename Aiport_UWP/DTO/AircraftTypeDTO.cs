@@ -19,7 +19,7 @@ namespace Aiport_UWP.DTO
 
         public override string ToString()
         {
-            return $"Model : {Model}";
+            return $"Id : {Id} Model : {Model}";
         }
     }
 }
