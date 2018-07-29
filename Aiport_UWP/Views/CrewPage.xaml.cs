@@ -33,7 +33,7 @@ namespace Aiport_UWP.Views
         private CrudService<PilotDTO> PilotService { get; set; }
         private CrudService<CrewDTO> Service { get; set; }
         private CrewDTO _selectedCrew;
-        private List<int> selectedIds { get; set; }
+        private ObservableCollection<int> selectedIds { get; set; }
         private bool isCreate;
         private int lastId;
 
@@ -46,7 +46,7 @@ namespace Aiport_UWP.Views
             PilotService = new CrudService<PilotDTO>("pilot");
             StewardessService = new CrudService<StewardessDTO>("stewardess");
             Service = new CrudService<CrewDTO>("crew");
-            selectedIds = new List<int>();
+            selectedIds = new ObservableCollection<int>();
             isCreate = false;
 
         }
@@ -107,8 +107,8 @@ namespace Aiport_UWP.Views
                 _selectedCrew = e.ClickedItem as CrewDTO;
                 Canvas.Visibility = Visibility.Collapsed;
                 TbId.Text = "Crew Id : " + _selectedCrew?.Id;
-                TbPilot.Text = "Pilot Id : " + _selectedCrew?.PilotId; ;
-                TbStewardess.Text = "Stewardesses :" + _selectedCrew?.StewardessesId; ;
+                TbPilot.Text = "Pilot Id : " + _selectedCrew?.PilotId; 
+                TbStewardess.Text = "Stewardesses :" + _selectedCrew?.StewardessesId.Count; 
             }
         }
 
@@ -201,7 +201,7 @@ namespace Aiport_UWP.Views
 
         private void BtnAddStew_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            selectedIds.Add((StewardessCombo.SelectedItem as StewardessDTO).Id);
         }
     }
 }
